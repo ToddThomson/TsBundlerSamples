@@ -1,0 +1,9 @@
+{
+  "name": "TypescriptReactTodoMVC",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "requirejs": "~2.3.2",
+    "requirejs-text": "~2.0.15"
+  }
+}

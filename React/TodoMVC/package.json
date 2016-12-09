@@ -1,0 +1,45 @@
+{
+    "name": "typescriptreacttodomvc",
+    "private": true,
+    "version": "2.0.0",
+    "description": "TodoMVC (React, Flux, Require) app build with TsBundler.",
+
+    "dependencies": {
+        "@types/classnames": "0.0.32",
+        "@types/eventemitter3": "1.2.0",
+        "@types/flux": "0.0.33",
+        "@types/immutable": "3.8.6",
+        "@types/keymirror": "0.1.0",
+        "@types/node": "0.0.2",
+        "@types/react": "0.14.54",
+        "@types/react-dom": "0.14.19",
+        "classnames": "~2.2.5",
+        "eventemitter3": "~2.0.2",
+        "flux": "~3.1.0",
+        "immutable": "~3.8.1",
+        "keymirror": "~0.1.1",
+        "react": "~15.4.1",
+        "react-dom": "~15.4.1",
+        "todomvc-app-css": "~2.0.6",
+        "todomvc-common": "~1.0.3"
+    },
+
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-concat": "~2.6.1",
+        "gulp-rimraf": "~0.2.0",
+        "gulp-replace": "~0.5.4",
+        "gulp-uglify": "~1.5.1",
+        "gulp-html-replace": "~1.6.1",
+        "gulp-requirejs": "latest",
+        "deeply": "~2.0.3",
+        "chalk": "~1.1.3",
+        "event-stream": "~3.3.4",
+        "typescript": "~2.1.4",
+        "tsbundler": "1.0.0-rc.4",
+        "tsproject": "~2.0.2"
+    },
+
+    "author": "Todd Thomson <todd.thomson@me.com>",
+    "license": "MIT"
+}
