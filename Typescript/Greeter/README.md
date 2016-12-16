@@ -1,10 +1,10 @@
 ﻿# Greeter
 This sample uses TsBundler to build, bundle and minify the Typescript Greeter app.
 
-##Description
+## Description
 This sample shows how to bundle a simple Typescript app to a single file minified bundle.
 
-##Build Instructions
+## Build Instructions
 To build the Greeter app you must have npm installed on your computer. 
 
 1. Download the TsBundlerSamples zip file from the root directory of the TsBundlerSamples github repository.

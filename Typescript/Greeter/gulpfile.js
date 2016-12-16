@@ -2,30 +2,19 @@
 var chalk = require('chalk');
 
 // Gulp build related
-var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    rimraf = require('gulp-rimraf'),
-    replace = require('gulp-replace'),
-    htmlreplace = require('gulp-html-replace'),
-    rjs = require('gulp-requirejs'),
-    tsproject = require('tsproject');
-    tsb = require('tsbundler');
+const gulp = require( 'gulp' );
+const del = require( "del" );
+const concat = require( 'gulp-concat' );
+const rimraf = require( 'gulp-rimraf' );
+const replace = require( 'gulp-replace' );
+const htmlreplace = require( 'gulp-html-replace' );
+const uglify = require('gulp-uglify');
+const systemBuilder = require( "systemjs-builder" );
+const tsb = require( 'tsbundler' );
 
 var bundlerOptions = {
     logLevel: 0,
     verbose: true
-};
-
-// Require Optimizer Config
-var requireJsOptimizerConfig = {
-    out: 'scripts.js',
-    baseUrl: './src',
-    name: 'app/bundles/app.min',
-    paths: {
-        requireLib: 'bower_modules/requirejs/require'
-    },
-    include: ['requireLib'],
-    insertRequire: ['app/bundles/app.min']
 };
 
 gulp.task( "ts", function() {
@@ -36,25 +25,43 @@ gulp.task( "ts", function() {
 
 } );
 
-gulp.task( 'js', ['ts'], function( callback ) {
-    rjs( requireJsOptimizerConfig )
-        .pipe( gulp.dest( './dist/' ) );
+gulp.task( 'bundle', ['ts'], function() {
 
-    callback();
+    var builder = new systemBuilder( 'src', './src/system.config.js' );
+
+    return builder.buildStatic( 'app', 'dist/js/app.js' )
+      .then( function() {
+          console.log( 'Bundling completed successfully' );
+      } )
+      .catch( function( err ) {
+          console.error( '>>> [systemjs-builder] Bundling failed'.bold.green, err );
+      } );
+} );
+
+// Concatenate and minify external vendor libraries...
+gulp.task( 'libs', function() {
+
+    gulp.src( [
+      'node_modules/systemjs/dist/system.src.js'
+    ] )
+      .pipe( concat( 'libs.js' ) )
+      .pipe( uglify() )
+      .pipe( gulp.dest( 'dist/js' ) );
 } );
 
 gulp.task( 'css', function() {
     return gulp.src( './src/css/app.css' )
         .pipe( concat( 'css.css' ) )
-        .pipe( gulp.dest( './dist/' ) );
+        .pipe( gulp.dest( './dist/css' ) );
 } );
 
 // Copies index.html, replacing <script> and <link> tags to reference production URLs
 gulp.task( 'html', function() {
     return gulp.src( './src/index.html' )
         .pipe( htmlreplace( {
-            'css': 'css.css',
-            'js': 'scripts.js'
+            'css': 'css/css.css',
+            'js': 'js/app.js',
+            'libs': 'js/libs.js'
         } ) )
         .pipe( gulp.dest( './dist/' ) );
 } );
@@ -65,7 +72,7 @@ gulp.task( 'clean', function() {
       .pipe( rimraf() );
 } );
 
-gulp.task( 'default', ['html', 'js', 'css'], function( callback ) {
+gulp.task( 'default', [ 'bundle', 'html', 'css'], function( callback ) {
     console.log( '\nPlaced optimized files in ' + chalk.magenta( 'dist/\n' ) );
     callback();
 } );

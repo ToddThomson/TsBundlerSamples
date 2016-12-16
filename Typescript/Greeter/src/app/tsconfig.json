@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "amd",
+        "module": "umd",
         "moduleResolution": "node",
         "declaration": false,
         "diagnostics": true,
@@ -10,7 +10,7 @@
         "preserveConstEnums": true,
         "removeComments": false,
         "sourceMap": false,
-        "noEmit": true
+        "noEmit": false
     },
     "files": [
         "./greeter.ts",

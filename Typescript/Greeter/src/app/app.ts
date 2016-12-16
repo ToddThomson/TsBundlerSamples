@@ -1,9 +1,18 @@
 ﻿import { Greeter } from "./Greeter";
 
-export namespace MyApp {
-
+function initializeApp() {
     var el = document.getElementById( 'content' );
-    export var greeter = new Greeter( el );
+    var greeter = new Greeter( el );
+    
+    greeter.start();    
 }
 
-MyApp.greeter.start();
+if ( document.readyState === 'complete' ) {
+    initializeApp();
+} else {
+    document.onreadystatechange = () => {
+        if ( document.readyState === "complete" ) {
+            initializeApp();
+        }
+    }
+}

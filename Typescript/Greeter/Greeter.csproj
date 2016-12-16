@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -28,9 +28,10 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="src\css\app.css" />
-    <Content Include="src\app\main.js" />
+    <Content Include="src\system.config.js" />
     <Content Include="gulpfile.js" />
     <Content Include="src\index.html" />
+    <Content Include="system.config.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -38,13 +39,11 @@
     <TypeScriptCompile Include="src\app\Greeter.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".bowerrc" />
     <Content Include=".tfignore" />
     <Content Include="package.json" />
     <Content Include="packages.config" />
     <Content Include="README.md" />
     <Content Include="src\app\tsconfig.json" />
-    <Content Include="bower.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -52,9 +51,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\bundles\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

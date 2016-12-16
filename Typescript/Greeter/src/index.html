@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Minified TypeScript HTML App</title>
+    <title>TypeScript Greeter HTML App</title>
     <!-- build:css -->
     <link href="css/app.css" rel="stylesheet">
     <!-- endbuild -->
+    <!-- build:libs -->
+    <!-- endbuild -->
     <!-- build:js -->
-    <script data-main="app/main.js" src="bower_modules/requirejs/require.js"></script>
+    <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="system.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
     <!-- endbuild -->
 </head>
 <body>
-    <h1>Minified TypeScript HTML App</h1>
+    <h1>TypeScript Greeter HTML App</h1>
+    <ul>
+        <li>Bundled and Minified using TsBundler</li>
+        <li>Single UMD module; SystemJs loader</li>
+    </ul>
     <div id="content"></div>
 </body>
 </html>
